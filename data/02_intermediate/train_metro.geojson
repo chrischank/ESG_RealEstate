@@ -1,7 +1,7 @@
 {
 "type": "FeatureCollection",
 "name": "train_metro",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::27700" } },
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "Station": "Abbey Road DLR Station", "x": 539082, "y": 183349, "lat": 51.53192649, "lng": 0.003736679 }, "geometry": { "type": "Point", "coordinates": [ 0.003736679, 51.53192649 ] } },
 { "type": "Feature", "properties": { "Station": "Abbey Wood", "x": 547372, "y": 179055, "lat": null, "lng": null }, "geometry": null },
