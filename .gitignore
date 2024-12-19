@@ -9,7 +9,11 @@ conf/local/**
 conf/**/*credentials*
 
 # ignore everything in the following folders
-!data/**
+data/**
+
+# Except large geospatial data
+!data/02_intermediate/property.geojson
+
 
 # except their sub-folders
 !data/**/
