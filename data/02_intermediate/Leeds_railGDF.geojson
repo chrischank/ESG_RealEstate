@@ -1,0 +1,22 @@
+{
+"type": "FeatureCollection",
+"name": "Leeds_railGDF",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Station": "Bramley (West Yorks) Rail Station", "x": 423990, "y": 434400, "lat": 53.80534873, "lng": -1.637206174 }, "geometry": { "type": "Point", "coordinates": [ -1.637206174, 53.80534873 ] } },
+{ "type": "Feature", "properties": { "Station": "Burley Park Rail Station", "x": 427900, "y": 435165, "lat": 53.81203018, "lng": -1.577767518 }, "geometry": { "type": "Point", "coordinates": [ -1.577767518, 53.81203018 ] } },
+{ "type": "Feature", "properties": { "Station": "Cottingley Rail Station", "x": 427274, "y": 430242, "lat": 53.76781663, "lng": -1.587708042 }, "geometry": { "type": "Point", "coordinates": [ -1.587708042, 53.76781663 ] } },
+{ "type": "Feature", "properties": { "Station": "Cross Gates Rail Station", "x": 436215, "y": 434430, "lat": 53.80491367, "lng": -1.451580332 }, "geometry": { "type": "Point", "coordinates": [ -1.451580332, 53.80491367 ] } },
+{ "type": "Feature", "properties": { "Station": "East Garforth Rail Station", "x": 441565, "y": 433035, "lat": 53.79197747, "lng": -1.370536818 }, "geometry": { "type": "Point", "coordinates": [ -1.370536818, 53.79197747 ] } },
+{ "type": "Feature", "properties": { "Station": "Garforth Rail Station", "x": 440785, "y": 433540, "lat": 53.79657766, "lng": -1.382309564 }, "geometry": { "type": "Point", "coordinates": [ -1.382309564, 53.79657766 ] } },
+{ "type": "Feature", "properties": { "Station": "Guiseley Rail Station", "x": 418830, "y": 442230, "lat": 53.87593427, "lng": -1.7150799 }, "geometry": { "type": "Point", "coordinates": [ -1.7150799, 53.87593427 ] } },
+{ "type": "Feature", "properties": { "Station": "Headingley Rail Station", "x": 426815, "y": 435820, "lat": 53.81797396, "lng": -1.594188004 }, "geometry": { "type": "Point", "coordinates": [ -1.594188004, 53.81797396 ] } },
+{ "type": "Feature", "properties": { "Station": "Horsforth Rail Station", "x": 424425, "y": 439115, "lat": 53.84770571, "lng": -1.630228366 }, "geometry": { "type": "Point", "coordinates": [ -1.630228366, 53.84770571 ] } },
+{ "type": "Feature", "properties": { "Station": "Kirkstall Forge Rail Station", "x": 424949, "y": 436449, "lat": 53.8237197, "lng": -1.622479269 }, "geometry": { "type": "Point", "coordinates": [ -1.622479269, 53.8237197 ] } },
+{ "type": "Feature", "properties": { "Station": "Leeds Rail Station", "x": 429870, "y": 433352, "lat": 53.79562656, "lng": -1.548025507 }, "geometry": { "type": "Point", "coordinates": [ -1.548025507, 53.79562656 ] } },
+{ "type": "Feature", "properties": { "Station": "Micklefield Rail Station", "x": 444450, "y": 432712, "lat": 53.78883681, "lng": -1.326793071 }, "geometry": { "type": "Point", "coordinates": [ -1.326793071, 53.78883681 ] } },
+{ "type": "Feature", "properties": { "Station": "Morley Rail Station", "x": 427070, "y": 428250, "lat": 53.74992356, "lng": -1.590976711 }, "geometry": { "type": "Point", "coordinates": [ -1.590976711, 53.74992356 ] } },
+{ "type": "Feature", "properties": { "Station": "New Pudsey Rail Station", "x": 421120, "y": 434290, "lat": 53.80448387, "lng": -1.680792301 }, "geometry": { "type": "Point", "coordinates": [ -1.680792301, 53.80448387 ] } },
+{ "type": "Feature", "properties": { "Station": "Woodlesford Rail Station", "x": 436830, "y": 429080, "lat": 53.75678721, "lng": -1.442879392 }, "geometry": { "type": "Point", "coordinates": [ -1.442879392, 53.75678721 ] } }
+]
+}
