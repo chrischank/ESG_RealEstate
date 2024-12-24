@@ -158,7 +158,7 @@ It seems that both regressions **log(SalePrice)~other variables** generally agre
  
 > H1: Locations and real estate characteristics are more important than Energy metrics for determining sales price.
 
-Yes, to some extent, but surprisingly floor area is not a strong determinant of sale price despite it being strongly correlated with number of rooms. Additionally, New Build and Tenure type does not seem to matter.
+Yes, to some extent, but surprisingly floor area is not a strong determinant of sale price. Additionally, New Build and Tenure type does not seem to matter.
 
 > RQ2: Which ESG metrics are important to explain the Sale Price and in which order are they most important
 - ESG variable importance to Sale Price:
