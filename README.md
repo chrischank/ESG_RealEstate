@@ -158,7 +158,7 @@ It seems that both regressions **log(SalePrice)~other variables** generally agre
  
 > H1: Locations and real estate characteristics are more important than Energy metrics for determining sales price.
 
-Yes, to some extent, but surprisingly floor area is not a strong determinant of sale price. Additionally, New Build and Tenure type does not seem to matter.
+Yes, to some extent, but surprisingly floor area is not a strong determinant of sale price, despite floor area seems to highly correlated with Sale Price. Additionally, New Build and Tenure type does not seem to matter.
 
 > RQ2: Which ESG metrics are important to explain the Sale Price and in which order are they most important
 - ESG variable importance to Sale Price:
@@ -174,5 +174,8 @@ Energy Efficiency in current and potential improvement seems to be a strong dete
  
 This assumption is correct, although aggregated distance performs only slightly better than closest distance, however it seems that the number of stations accessible matter less.
 
-
-
+### Directions for further investigation
+- Analysis for this exercise left out ```CONSTRUCTION_DATE_BAND``` due to the high complexity of some with just year and some with England and Wales year type, not clear how to harmonise this.
+- Quantilised Sales Date with the same analysis might be able to tell us how these features change in importance over time, maybe ESG matter a lot less previously than now.
+- Subsetting data with the same analysis for both ```BUILT_FORM``` and ```PropertyType``` could inform us on how the investigated feature matter for different build types.
+- Further investigation into how energy consumption and energy efficiency towards ratings would be interesting. Although I suspect these are not the only variables involved in the rating, therefore, I believe we need more information before this can be performed.
