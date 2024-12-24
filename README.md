@@ -140,7 +140,7 @@ builtform_dict = {
 <img width="579" alt="image" src="https://github.com/user-attachments/assets/caa09b70-3d27-42e8-bb58-e0ef8cd3568d" />
 <img width="690" alt="image" src="https://github.com/user-attachments/assets/3af70f73-119b-4226-8bec-c924c45ab035" />
 
-#### Joined results
+#### ![Joined results Data](./data/07_model_output/MLR_results.csv)
 <img width="868" alt="image" src="https://github.com/user-attachments/assets/d708ef9e-0da5-4d09-bc36-1c8a2686cd5c" />
 
 ## Discussion
