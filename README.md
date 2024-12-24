@@ -89,6 +89,41 @@ Features that were removed:
  "ENERGY_CONSUMPTION_POTENTIAL", "POTENTIAL_ENERGY_EFFICIENCY",
  "Closest_station"]
 ```
+The dataset ready for analysis can be found in [OHfeatures_w_routes.parquet](./data/04_feature/OHfeatures_w_routes.parquet)
+
+The One Hot encoding are as follow:
+```python
+OneHot_dict = {
+    # ENERGY_RATING
+    "A": 5,
+    "B": 4,
+    "C": 3,
+    "D": 2,
+    "E": 1,
+    # Boolean
+    True: 1,
+    False: 0,
+    None: None,
+    # PropertyType
+    "Detached": 4,
+    "Semi-Detached": 3,
+    "Terraced": 2,
+    "Flat": 1,
+    # Tenure
+    "Freehold": 1,
+    "Leasehold": 0
+}
+
+builtform_dict = {
+    # BUILT_FORM to not overlap with PropertyType
+    "Detached": 6,
+    "Semi-Detached": 5,
+    "Enclosed End-Terrace": 4,
+    "End-Terrace": 3,
+    "Enclosed Mid-Terrace": 2,
+    "Mid-Terrace": 1,
+}
+```
 
 ### Regressions and Analysis
 > Multiple Linear Regression were performed using both sklearn and statsmodels for due diligence
