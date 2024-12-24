@@ -1,101 +1,121 @@
-# knight_frank
+# Knight Frank Senior ESG Analyst / Statistician technical assessment
 
 [![Powered by Kedro](https://img.shields.io/badge/powered_by-kedro-ffc900?logo=kedro)](https://kedro.org)
 
 ## Overview
 
-This is your new Kedro project with Kedro-Viz setup, which was generated using `kedro 0.19.10`.
+To find out any relationship for ESG and other variables for Properties in Leeds.
 
-Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
-
-## Rules and guidelines
-
-In order to get the best out of the template:
-
-* Don't remove any lines from the `.gitignore` file we provide
-* Make sure your results can be reproduced by following a [data engineering convention](https://docs.kedro.org/en/stable/faq/faq.html#what-is-data-engineering-convention)
-* Don't commit data to your repository
-* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
+### Research Questions:
+- RQ1: Which are the most important variables that contribute to the Sale Price in Leeds
+- RQ2: Which ESG metrics are important to explain the Sale Price and in which order are they most important
+- RQ3: Does distance to train station matter and in which order are they most important?
 
 ## How to install dependencies
 
-Declare any dependencies in `requirements.txt` for `pip` installation.
+Declare any dependencies in `requirements.txt` for `pip` or `conda` installation.
 
 To install them, run:
 
 ```
 pip install -r requirements.txt
 ```
-
-## How to run your Kedro pipeline
-
-You can run your Kedro project with:
-
 ```
-kedro run
+conda install --file requirements.txt
 ```
-
-## How to test your Kedro project
-
-Have a look at the files `src/tests/test_run.py` and `src/tests/pipelines/data_science/test_pipeline.py` for instructions on how to write your tests. Run the tests as follows:
-
-```
-pytest
-```
-
-To configure the coverage threshold, look at the `.coveragerc` file.
 
 ## Project dependencies
 
 To see and update the dependency requirements for your project use `requirements.txt`. Install the project requirements with `pip install -r requirements.txt`.
 
-[Further information about project dependencies](https://docs.kedro.org/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
+## Exploratory Data Analysis summary
 
-## How to work with Kedro and notebooks
+> The main EDA notebook is located in [EDA notebook](./notebooks/EDA.ipynb)
 
-> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `catalog`, `context`, `pipelines` and `session`.
->
-> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r requirements.txt` you will not need to take any extra steps before you use them.
+### Data Exploration and Cleaning
+- Tabular Data
+> Property Data seems to contain all the interesting variables to each LRUniqueID proerty within Leeds, there were some duplications that needed harmonising, as well as flipped Latitude and Longitude.
+> UK train and metro stations seems to contain all national rail and metro stations in the UK, some duplication needed harmonising.
 
-### Jupyter
-To use Jupyter notebooks in your Kedro project, you need to install Jupyter:
+![all_points](https://github.com/user-attachments/assets/5ec56ae6-8c0b-4944-9f2c-e60f4f5b6361)
+![prop_variableHIST](./docs/figures/prop_variableHIST.png)
+![prop_variableSCATTER](./docs/figures/prop_variableSCATTER.png)
+![pairplot](./docs/figures/pairplot.png)
 
-```
-pip install jupyter
-```
+- Geospatial Data
+> All geospatial data for property and train stations were clipped to the intersection of the bounding box of a Leeds polygon from osmnx
+![Leeds_BFmap](./docs/figures/Leeds_BFmap.png)
 
-After installing Jupyter, you can start a local notebook server:
-
-```
-kedro jupyter notebook
-```
-
-### JupyterLab
-To use JupyterLab, you need to install it:
-
-```
-pip install jupyterlab
+### Features engineered
+- ESG:
+```python
+prop_df["EE_POTENTIAL_IMPROVEMENT"] = prop_df["POTENTIAL_ENERGY_EFFICIENCY"] - prop_df["CURRENT_ENERGY_EFFICIENCY"]
+prop_df["EC_POTENTIAL_IMPROVEMENT"] = prop_df["ENERGY_CONSUMPTION_POTENTIAL"] - prop_df["ENERGY_CONSUMPTION_CURRENT"]
 ```
 
-You can also start JupyterLab:
+- Geospatial:
+#### Geospatial analysis for Leeds properties using osmnx
+##### Features to make
+1. Euclidean distance to nearest station
+2. Average aggreted distance = Aggregated euclidean distances to stations within 24.94 km radius / reachable station
 
+##### According to the Department of Transport Journey Time Statistics Dataset: JTS0926
+https://assets.publishing.service.gov.uk/media/5bc44587ed915d0b01a1bccc/jts0921.ods
+> The average minimum car journey time to nearest rail stations in Leeds is 31 minutes\
+> If the average intercity speed limit is 30 m/h (48.28 km/h)\
+> This means that I should consider stations within property radius of 24.94 km
+
+The OSM derived polygon seens to be off with its latitude and longitude\
+Obtaining data from UK GOV geospatial portal instead\
+https://geoportal.statistics.gov.uk/datasets/445118cc2e3b495aa81afa3925bfb0d9_0/explore?location=53.748137%2C-1.549435%2C9.68
+
+1. Number of stations ```OHprop_w_routes["Num_station"]```
+3. Nearest station ```OHprop_w_routes["Closest_station"]```
+4. Shortest distance to nearest station ```OHprop_w_routes["Closest_dist_km"]```
+5. Mean aggregated distance to number of stations ```OHprop_w_routes["mean_agg_dist_km"]```
+
+> Routes to station within buffer (24.94 km) for a random sample of 1000 were calculated
+![shortest_route](https://github.com/user-attachments/assets/c42c3741-ecc0-4558-afc2-c8c99923bbe3)
+![all_route](https://github.com/user-attachments/assets/cd1db1ab-f8b1-46b8-ba99-515033693ac2)
+<img width="872" alt="image" src="https://github.com/user-attachments/assets/04bdb371-851b-449e-8681-2fd2e8645611" />
+
+### Feature selection and Multiple Linear Regression
+Features were then subjected to correlation analysis and empirical understanding to remove unnecessary variables.
+<img width="1077" alt="image" src="https://github.com/user-attachments/assets/5c20ea95-72b6-4caa-963f-a5c8e3be90f7" />
+
+Features that were removed:
+```python
+["LRUniqueID", "CURRENT_ENERGY_RATING", "POTENTIAL_ENERGY_RATING", 
+ "ENERGY_CONSUMPTION_POTENTIAL", "POTENTIAL_ENERGY_EFFICIENCY",
+ "Closest_station"]
 ```
-kedro jupyter lab
-```
 
-### IPython
-And if you want to run an IPython session:
+### Regressions and Analysis
+> Multiple Linear Regression were performed using both sklearn and statsmodels for due diligence
+> **log(SalePrice)~other variables** 
 
-```
-kedro ipython
-```
+#### sklearn
+<img width="789" alt="image" src="https://github.com/user-attachments/assets/b5e21ebd-133e-4974-b522-1d415312523e" />
 
-### How to ignore notebook output cells in `git`
-To automatically strip out all output cell contents before committing to `git`, you can use tools like [`nbstripout`](https://github.com/kynan/nbstripout). For example, you can add a hook in `.git/config` with `nbstripout --install`. This will run `nbstripout` before anything is committed to `git`.
+#### statsmodels
+<img width="579" alt="image" src="https://github.com/user-attachments/assets/caa09b70-3d27-42e8-bb58-e0ef8cd3568d" />
+<img width="690" alt="image" src="https://github.com/user-attachments/assets/3af70f73-119b-4226-8bec-c924c45ab035" />
 
-> *Note:* Your output cells will be retained locally.
+#### Joined results
+<img width="868" alt="image" src="https://github.com/user-attachments/assets/d708ef9e-0da5-4d09-bc36-1c8a2686cd5c" />
 
-[Further information about using notebooks for experiments within Kedro projects](https://docs.kedro.org/en/develop/notebooks_and_ipython/kedro_and_notebooks.html).
-## Package your Kedro project
+## Discussion
+It seems that both regressions **log(SalePrice)~other variables** generally agree with each other, with little variation.
+- Top 3 variabes that both models agree on were:
+  1. Property Type
+  2. Number of Habitable Rooms
+  3. Extension Count
+- Bottom 3 variables that both models agree on were:
+  1. Tenure
+  2. Main Gas Flag (Boolean)
+  3. Number of stations within 24.94 km
 
-[Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html).
+- ESG variable importance to Sale Price:
+> EE_POTENTIAL_IMPROVEMENT > CURRENT_ENERGY_EFFICIENCY > EC_POTENTIAL_IMRPOVEMENT > ENERGY_CONSUMPTION_CURRENT
+- Geospatial importance to Sale Price:
+> MEAN_AGG_DIST > CLOSEST_DIST
