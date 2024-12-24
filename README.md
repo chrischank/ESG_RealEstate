@@ -155,21 +155,24 @@ It seems that both regressions **log(SalePrice)~other variables** generally agre
   1. Tenure
   2. Main Gas Flag (Boolean)
   3. Number of stations within 24.94 km
+ 
 > H1: Locations and real estate characteristics are more important than Energy metrics for determining sales price.
-Yes, to some extent, but surprisingly floor area is not a strong determinant of sale price despite it being strongly correlated with number of rooms\
-Additionally, New Build and Tenure type does not seem to matter.
+
+Yes, to some extent, but surprisingly floor area is not a strong determinant of sale price despite it being strongly correlated with number of rooms. Additionally, New Build and Tenure type does not seem to matter.
 
 > RQ2: Which ESG metrics are important to explain the Sale Price and in which order are they most important
 - ESG variable importance to Sale Price:
 > EE_POTENTIAL_IMPROVEMENT > CURRENT_ENERGY_EFFICIENCY > EC_POTENTIAL_IMRPOVEMENT > ENERGY_CONSUMPTION_CURRENT
+
 Energy Efficiency in current and potential improvement seems to be a strong determinant than energy consumption.
 
 > RQ3: Does distance to train station matter and in which order are they most important?
 > H2: Average distance to multiple train stations are more important than shorter distance the the closest train station.
+
 - Geospatial importance to Sale Price:
 > MEAN_AGG_DIST > CLOSEST_DIST
-This assumption is correct, although aggregated distance performs only slightly better than closest distance,\
-however it seems that the number of stations accessible matter less.
+ 
+This assumption is correct, although aggregated distance performs only slightly better than closest distance, however it seems that the number of stations accessible matter less.
 
 
 
