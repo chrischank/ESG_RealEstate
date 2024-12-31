@@ -162,7 +162,7 @@ Yes, to some extent, but surprisingly floor area is not a strong determinant of 
 
 > RQ2: Which ESG metrics are important to explain the Sale Price and in which order are they most important
 - ESG variable importance to Sale Price:
-> EE_POTENTIAL_IMPROVEMENT > CURRENT_ENERGY_EFFICIENCY > EC_POTENTIAL_IMRPOVEMENT > ENERGY_CONSUMPTION_CURRENT
+> EE_POTENTIAL_IMPROVEMENT **statistically significant** > CURRENT_ENERGY_EFFICIENCY **P|t| 0.051** > EC_POTENTIAL_IMRPOVEMENT > ENERGY_CONSUMPTION_CURRENT
 
 Energy Efficiency in current and potential improvement seems to be a strong determinant than energy consumption.
 
@@ -170,7 +170,7 @@ Energy Efficiency in current and potential improvement seems to be a strong dete
 > H2: Average distance to multiple train stations are more important than shorter distance the the closest train station.
 
 - Geospatial importance to Sale Price:
-> MEAN_AGG_DIST > CLOSEST_DIST
+> MEAN_AGG_DIST **statistically significant** > CLOSEST_DIST
  
 This assumption is correct, although aggregated distance performs only slightly better than closest distance, however it seems that the number of stations accessible matter less.
 
