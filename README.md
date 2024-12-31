@@ -174,6 +174,11 @@ Energy Efficiency in current and potential improvement seems to be a strong dete
  
 This assumption is correct, although aggregated distance performs only slightly better than closest distance, however it seems that the number of stations accessible matter less.
 
+
+### Caveats
+```NUM_STATIONS``` is interesting that it negatively contributes towards SalePrice with lower p-value, while ```MEAN_AGG_DIST``` is a statistically significant positive predictor.\
+```Tennure``` is another statistically significant negative contributor.
+
 ### Directions for further investigation
 - Analysis for this exercise left out ```CONSTRUCTION_DATE_BAND``` due to the high complexity of some with just year and some with England and Wales year type, not clear how to harmonise this.
 - Quantilised Sales Date with the same analysis might be able to tell us how these features change in importance over time, maybe ESG matter a lot less previously than now.
