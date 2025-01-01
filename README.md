@@ -166,11 +166,15 @@ It seems that both regressions **log(SalePrice)~other variables** generally agre
  
 > H1: Locations and real estate characteristics are more important than Energy metrics for determining sales price.
 
-Yes, to some extent, but surprisingly floor area is not a strong determinant of sale price, despite floor area seems to highly correlated with Sale Price. Additionally, New Build and Tenure type does not seem to matter.
+Yes, to some extent, but surprisingly floor area is not a strong determinant of sale price, despite floor area seems to highly correlated with Sale Price. Additionally, New Build and Tenure type does not seem to matter. However, geospatial aspects are generaly inconclusive
 
 > RQ2: Which ESG metrics are important to explain the Sale Price and in which order are they most important
 - ESG variable importance to Sale Price:
-> EE_POTENTIAL_IMPROVEMENT **statistically significant** > CURRENT_ENERGY_EFFICIENCY **P|t| 0.051** > EC_POTENTIAL_IMRPOVEMENT > ENERGY_CONSUMPTION_CURRENT
+> EE_POTENTIAL_IMPROVEMENT **statistically significant** > CURRENT_ENERGY_EFFICIENCY **P|t| 0.051** > ENERGY_CONSUMPTION_CURRENT > EC_POTENTIAL_IMRPOVEMENT
+
+**Careful interpretation of ```EC_POTENTIAL_IMPROVEMENT``` here because the larger the negative the better the improvement, as smaller energy consumption is better, thus\
+Here we see that the model says although statistically insignificant, Energy Consumption Current is negatively contributing, meaning that a decrease in value correspond to higher price\
+Meanwhile, EC_POTENTIAL_IMPROVEMENT has a tiny positive value, meaning an increase in value correspond to higher price, which does not make sense. Therefore, while being both statistically insignificant, the ENERGY_CONSUMPTION_CURRENT tells us more than EC_POTENTIAL_IMPROVEMENT!
 
 Energy Efficiency metrics are **statistically significant** in current and potential improvement seems to be a strong determinant than energy consumption.
 
@@ -178,18 +182,19 @@ Energy Efficiency metrics are **statistically significant** in current and poten
 > H2: Average distance to multiple train stations are more important than shorter distance the the closest train station.
 
 - Geospatial importance to Sale Price:
-> MEAN_AGG_DIST > CLOSEST_DIST
- 
-This assumption is correct, although aggregated distance performs only slightly better than closest distance, however it seems that the number of stations accessible matter less.
+This is generally inconclusive, due to high p-value and positive contribution of coefficient for both mean aggregated distance and minimum distance. As one would expect smaller numbers (i.e. closer the property is to multiple or single stations) be a predictor for price, yet the result shows tiny positive change in distance increases the price, which is strange.\
+Perhaps I should have also created a feature called aggregated distance as well.
 
 
-### Caveats
+### Other Caveats
 None of the geospatial distance variables were statisticaly significant.\
-```NUM_STATIONS``` is interesting that it negatively contributes towards SalePrice with lower p-value, while ```MEAN_AGG_DIST``` is a statistically significant positive predictor.\
-```Tennure``` is another statistically significant negative contributor.
+```NUM_STATIONS``` is interesting that it negatively contributes towards SalePrice with a statistically significant p-value.
+```Tenure``` is another statistically significant negative contributor.
 
 ### Directions for further investigation
 - Analysis for this exercise left out ```CONSTRUCTION_DATE_BAND``` due to the high complexity of some with just year and some with England and Wales year type, not clear how to harmonise this.
 - Quantilised Sales Date with the same analysis might be able to tell us how these features change in importance over time, maybe ESG matter a lot less previously than now.
 - Subsetting data with the same analysis for both ```BUILT_FORM``` and ```PropertyType``` could inform us on how the investigated feature matter for different build types.
 - Further investigation into how energy consumption and energy efficiency towards ratings would be interesting. Although I suspect these are not the only variables involved in the rating, therefore, I believe we need more information before this can be performed.
+- A Better experiment design separating out geospatial variables and ESG variables and performed Multiple Linear Regression with cross-validation and bootstrapping for each type of property could probably solve a lot of the inconclusiveness identified above.
+- A sample of 1000 for regression might not be enough, I really needed to use the full dataset, however, I was limited computationally.
