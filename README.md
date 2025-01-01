@@ -38,12 +38,20 @@ To see and update the dependency requirements for your project use `requirements
 
 ### Data Exploration and Cleaning
 - Tabular Data
-> Property Data seems to contain all the interesting variables to each LRUniqueID proerty within Leeds, there were some duplications that needed harmonising, as well as flipped Latitude and Longitude.
-> UK train and metro stations seems to contain all national rail and metro stations in the UK, some duplication needed harmonising.
+> Property Data seems to contain all the interesting variables to each LRUniqueID property within Leeds, there were some duplications that needed harmonising, as well as flipped Latitude and Longitude.
+> UK train and metro stations seems to contain all national rail and metro stations in the UK, some duplications were removed.
 
 ![all_points](https://github.com/user-attachments/assets/5ec56ae6-8c0b-4944-9f2c-e60f4f5b6361)
+- Rough scatter and histogram plots after one-hot encoding
 ![prop_variableHIST](./docs/figures/prop_variableHIST.png)
 ![prop_variableSCATTER](./docs/figures/prop_variableSCATTER.png)
+- Strange that some total floor area / number of rooms are so large, for example:
+  1. LRUniqueID 5A9D8B55-F311-68EB-E053-6B04A8C0D293 has a floor area of 94 with 60 rooms, while
+  2. LRUniqueID 4640CBA2-5324-4A98-AED7-05C65FB3BF73 has a floor area of 5918 with only 6 number of rooms.
+  3. Energy Consumption data has negative (net-negative house?) and are much bigger in range than Energy Efficiency.
+
+ - I hesitated and refrained from cleaning the data using distribution as I know some properties are highly anomalous, but without further information I was not sure.
+
 ![pairplot](./docs/figures/pairplot.png)
 
 - Geospatial Data
