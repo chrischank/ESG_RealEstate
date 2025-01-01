@@ -43,6 +43,7 @@ To see and update the dependency requirements for your project use `requirements
 
 ![all_points](https://github.com/user-attachments/assets/5ec56ae6-8c0b-4944-9f2c-e60f4f5b6361)
 - Rough scatter and histogram plots after one-hot encoding
+**Due to some limitations of seaborn obscuring the dtype of long-form dataframe, I cannot truly align x-axis label, e.g. NewBuilt are actually 0 and 1 instead of float values.**
 ![prop_variableHIST](./docs/figures/prop_variableHIST.png)
 ![prop_variableSCATTER](./docs/figures/prop_variableSCATTER.png)
 - Strange that some total floor area / number of rooms are so large, for example:
@@ -68,8 +69,8 @@ prop_df["EC_POTENTIAL_IMPROVEMENT"] = prop_df["ENERGY_CONSUMPTION_POTENTIAL"] - 
 - Geospatial:
 #### Geospatial analysis for Leeds properties using osmnx
 ##### Features to make
-1. Euclidean distance to nearest station
-2. Average aggreted distance = Aggregated euclidean distances to stations within 24.94 km radius / reachable station
+1. Dijkstra distance to nearest station
+2. Average aggreted distance = Aggregated Dijkstra distances to stations within 24.94 km radius / reachable station
 
 ##### According to the Department of Transport Journey Time Statistics Dataset: JTS0926
 https://assets.publishing.service.gov.uk/media/5bc44587ed915d0b01a1bccc/jts0921.ods
